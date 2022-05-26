@@ -1,0 +1,31 @@
+app-id: fm.reaper.Reaper
+runtime: org.gnome.Platform
+runtime-version: '42'
+sdk: org.gnome.Sdk
+command: /app/REAPER/reaper
+
+modules:
+  - name: reaper
+    buildsystem: simple
+    build-commands:
+      - sh install-reaper.sh --quiet --install /app
+      - install -Dm644 /app/REAPER/Resources/main.png /app/share/icons/hicolor/256x256/apps/fm.reaper.Reaper.png 
+      - install -Dm644 fm.reaper.Reaper.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.appdata.xml
+    sources:
+      - type: archive
+        url: https://www.reaper.fm/files/6.x/reaper658_linux_x86_64.tar.xz
+        sha256: 8d18e110a75f99640161c852acf3610dfeb2a2712a49df2012888236e89dcac3
+      - type: file
+        path: fm.reaper.Reaper.desktop
+      - type: file
+        path: fm.reaper.Reaper.metainfo.xml
+
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --system-talk-name=org.freedesktop.RealtimeKit1
+  - --device=all
+  - --filesystem=home
+  - --filesystem=xdg-run/pipewire-0
