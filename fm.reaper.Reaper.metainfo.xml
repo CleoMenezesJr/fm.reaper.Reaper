@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
     <id>
-		rm.reaper.Reaper
+      rm.reaper.Reaper
     </id>
     <name>
-		Reaper
+      Reaper
     </name>
     <summary>
-		Digital Audio Workstation.
+      Digital Audio Workstation.
     </summary>
     <url type="homepage">
-		https://www.reaper.fm/
+      https://www.reaper.fm/
     </url>
     <url type="bugtracker">
-		https://forum.cockos.com/forumdisplay.php?f=22
+      https://forum.cockos.com/forumdisplay.php?f=22
     </url>
     <url type="help">
-		https://forum.cockos.com/
+      https://forum.cockos.com/
     </url>
     <metadata_license>
-		CC0-1.0
+      CC0-1.0
     </metadata_license>
     <project_license>
-		licenseRef-proprietary
+      LicenseRef-proprietary=https://www.reaper.fm/dist-agreement.php
     </project_license>
     <description>
         <p>
