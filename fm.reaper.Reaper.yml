@@ -29,6 +29,8 @@ modules:
         path: fm.reaper.Reaper.desktop
       - type: file
         path: fm.reaper.Reaper.metainfo.xml
+    post-install:
+      - install -d /app/extensions/Plugins
 
 finish-args:
   - --share=ipc
