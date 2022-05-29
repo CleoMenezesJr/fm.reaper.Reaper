@@ -2,7 +2,33 @@ app-id: fm.reaper.Reaper
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
+tags:
+ - proprietary
 command: /app/REAPER/reaper
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=all
+  - --filesystem=home
+  - --filesystem=xdg-run/pipewire-0
+  - --system-talk-name=org.freedesktop.RealtimeKit1
+  - --system-talk-name=org.freedesktop.Flatpak
+  - --env=ALSA_CONFIG_PATH=
+  - --env=LV2_PATH=/app/extensions/Plugins/lv2
+  - --env=DSSI_PATH=/app/extensions/Plugins/dssi
+  - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
+  - --env=VST_PATH=/app/extensions/Plugins/lxvst
+  - --env=VST3_PATH=$HOME/.vst3:/app/extensions/Plugins/vst3
+
+cleanup:
+  - '*.a'
+  - '*.la'
+  - /include
+  - /cache
+  - /include
 
 add-extensions:
   org.freedesktop.LinuxAudio.Plugins:
@@ -12,6 +38,16 @@ add-extensions:
     merge-dirs: ladspa;dssi;lv2;lxvst;vst3
     subdirectories: true
     no-autodownload: true
+
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    version: '21.08'
+    add-ld-path: "."
+    autodelete: false
+
+cleanup-commands:
+- mkdir -p /app/lib/ffmpeg
+  
 
 modules:
   - name: reaper
@@ -31,18 +67,3 @@ modules:
         path: fm.reaper.Reaper.metainfo.xml
     post-install:
       - install -d /app/extensions/Plugins
-
-finish-args:
-  - --share=ipc
-  - --socket=x11
-  - --socket=pulseaudio
-  - --device=all
-  - --filesystem=home
-  - --filesystem=xdg-run/pipewire-0
-  - --system-talk-name=org.freedesktop.RealtimeKit1
-  - --system-talk-name=org.freedesktop.Flatpak
-  - --env=LV2_PATH=/app/extensions/Plugins/lv2
-  - --env=DSSI_PATH=/app/extensions/Plugins/dssi
-  - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
-  - --env=VST_PATH=/app/extensions/Plugins/lxvst
-  - --env=VST3_PATH=$HOME/.vst3:/app/extensions/Plugins/vst3
