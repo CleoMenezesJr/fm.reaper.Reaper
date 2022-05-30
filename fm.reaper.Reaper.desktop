@@ -4,4 +4,4 @@ Exec=/app/REAPER/reaper
 Icon=fm.reaper.Reaper
 Type=Application
 Comment=Digital Audio Workstation.
-Categories=X-AudioVideo;Audio;X-AudioEditing;X-Recorders;X-Multitrack;X-Jack;
+Categories=AudioVideo;Audio;Video;
